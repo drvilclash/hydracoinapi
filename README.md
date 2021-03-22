@@ -23,7 +23,7 @@ const hapi = new HydraApi('Token', 'user_id')
 
 ``` js
 async function run() {
-    const info = await ds.getProjectInfo()
+    const info = await hapi.getProjectInfo()
     console.log(info)
 }
 run().catch(console.error);
@@ -81,7 +81,7 @@ run().catch(console.error);
 
 ``` js
 async function run() {
-    const info = await ds.getPaymentLink();
+    const info = await hapi.getPaymentLink();
     console.log(info);
 };
 
@@ -106,9 +106,9 @@ run().catch(console.error);
 
 ``` js
 function run() {
-    ds.start('http://82.112.51.71', 80);
+    hapi.start('http://82.112.51.71', 80);
 
-    ds.onPayment(context => {
+    hapi.onPayment(context => {
         const {
             amount,
             fromId

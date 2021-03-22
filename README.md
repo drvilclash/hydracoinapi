@@ -12,7 +12,7 @@ NodeJS библиотека для работы с API сервиса "Hydra Coi
 const {
     HydraApi
 } = require('hydracoinapi')
-const hapi = new Domosed('Token', 'user_id')
+const hapi = new HydraApi('Token', 'user_id')
 ```
 
 ## Методы API

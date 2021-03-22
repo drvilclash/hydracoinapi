@@ -1,4 +1,4 @@
-# Domosed API
+# Hydra API
 
 NodeJS библиотека для работы с API сервиса "Hydra Coin"
 
@@ -24,18 +24,6 @@ const hapi = new Domosed('Token', 'user_id')
 | methodName | string | Да |Имя метода |
 | params | object | Нет | Параметры запроса |
 
-**Пример:**
-
-``` js
-async function run() {
-    const info = await hapi.call('merchants.merchants.edit', {
-        name: 'My test app'
-    })
-    console.log(info)
-}
-run().catch(console.error);
-```
-
 ##
 ***getProjectInfo*** - Получить информацию о Вашем проекте
 
@@ -58,33 +46,18 @@ run().catch(console.error);
 | avatar| string | Нет | Прямая ссылка на новый аватар проекта |
 | group_id| number | Нет | ID группы проекта |
 
-* Хотя-бы 1 параметр должен быть передан
+* Все параметры должны быть переданы 
 
 **Пример:**
 
 ``` js
 async function run() {
-    const info = await ds.editProjectInfo(
+    const info = await hapi.editProjectInfo(
         'My app',
         'vk.com/images/camera_200.png',
         1
     );
     console.log(info)
-};
-
-run().catch(console.error);
-```
-
-##
-***sendVerify*** - Отправить Ваш проект на модерацию
-В случае успешной модерации - Вы будете опубликованы в разделе "развлечения" официального приложения Домосед.
-
-**Пример:**
-
-``` js
-async function run() {
-    const info = await ds.sendVerify();
-    console.log(info);
 };
 
 run().catch(console.error);
@@ -102,44 +75,7 @@ run().catch(console.error);
 
 ``` js
 async function run() {
-    const info = await ds.sendPayment(1, 1);
-    console.log(info);
-};
-
-run().catch(console.error);
-```
-
-##
-***getHistoryPayments*** - Получить историю последних платежей
-
-| Параметр | Тип | Обязателен | Описание |
-|--|--|--|--|
-| type | string | нет| Тип возвращаемых переводов(all — все, out — исходящие, in — входящие) |
-| limit | number | нет |Количество возвращаемых переводов, от 1 до 50  |
-
-**Пример:**
-
-``` js
-async function run() {
-    const info = await ds.getHistoryPayments('all', 50);
-    console.log(info);
-};
-
-run().catch(console.error);
-```
-
-##
-***getBalance*** - Получить баланс пользователей
-
-| Параметр | Тип | Обязателен | Описание |
-|--|--|--|--|
-| userIds | Array<Number>/Number | да | Массив ID пользователей, чьи балансы нужно вернуть |
-
-**Пример:**
-
-``` js
-async function run() {
-    const info = await ds.getBalance([73845201, 1]);
+    const info = await hapi.sendPayment(1, 1);
     console.log(info);
 };
 
@@ -178,7 +114,7 @@ run().catch(console.error);
 
 ``` js
 function run() {
-    ds.start('myAwesomeDomen.ru', 80);
+    ds.start('http://82.112.51.71', 80);
 
     ds.onPayment(context => {
         const {
